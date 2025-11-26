@@ -9,7 +9,7 @@ import Foundation
 
 /// Attempts to place a single word into the grid.
 /// Returns a `PlacedWord` if successful.
-struct WordPlacer {
+internal struct WordPlacer {
   
   /// Try placing the word several times in random positions.
   static func place(word: String,
@@ -53,16 +53,16 @@ struct WordPlacer {
                                allowOverlaps: Bool,
                                grid: Grid) throws(WordSearchError) -> Bool {
     
-    var row = row
-    var col = col
+    var r = row
+    var c = col
     
     for char in word {
       
-      if !grid.isInside(row, col) {
+      if !grid.isInside(r, c) {
         return false
       }
       
-      let existing = try grid.character(at: row, col: col)
+      let existing = try grid.character(at: r, col: c)
       if existing != " " && existing != char {
         return false
       }
@@ -71,8 +71,8 @@ struct WordPlacer {
         return false
       }
       
-      row += delta.row
-      col += delta.column
+      r += delta.row
+      c += delta.column
     }
     
     return true
@@ -85,18 +85,11 @@ struct WordPlacer {
                             delta: Delta,
                             grid: inout Grid,
                             direction: Direction) throws(WordSearchError) -> PlacedWord {
-    
+    let start = GridPoint(row: row, column: col)
     var row = row
     var col = col
-    var overlaps = true
     
     for char in word {
-      if !overlaps {
-        let existing = try grid.character(at: row, col: col)
-        if existing == char {
-          overlaps = true
-        }
-      }
 
       try grid.set(char, at: row, col: col)
       row += delta.row
@@ -104,8 +97,7 @@ struct WordPlacer {
     }
     
     return .init(word: word,
-                 start: (row, col),
-                 direction: direction,
-                 overlapsAnotherWord: overlaps)
+                 start: start,
+                 direction: direction)
   }
 }

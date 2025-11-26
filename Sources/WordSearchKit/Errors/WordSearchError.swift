@@ -7,7 +7,8 @@
 
 import Foundation
 
-enum WordSearchError: Error {
+public enum WordSearchError: Error {
   case unableToPlaceWord
   case outOfBounds
+  case invalidDirection
 }

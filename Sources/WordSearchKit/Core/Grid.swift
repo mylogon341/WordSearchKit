@@ -7,14 +7,13 @@
 
 import Foundation
 
-struct Grid {
+public struct Grid {
   private(set) var rows: Int
   private(set) var columns: Int
   private(set) var placedWords: [PlacedWord] = []
-  
-  private var storage: [[Character]]
-  
-  init(rows: Int, columns: Int) {
+  private(set) var storage: [[Character]]
+ 
+  internal init(rows: Int, columns: Int) {
     self.rows = rows
     self.columns = columns
     
@@ -24,8 +23,22 @@ struct Grid {
     )
   }
   
-  var description: String {
-    return storage.map(\.description).joined(separator: "\n")
+  // for reliable unit testing
+  internal init(storage: [[Character]]) {
+    self.rows = storage.count
+    self.columns = storage.first?.count ?? 0
+    self.storage = storage
+  }
+  
+  internal mutating func addPlacedWord(_ word: PlacedWord) {
+    placedWords.append(word)
+  }
+  
+  /// For getting a visual representation of the 2D array in the console
+  public var description: String {
+    storage
+      .map(\.description)
+      .joined(separator: "\n")
   }
   
   mutating func storePlacedWord(_ word: PlacedWord) {

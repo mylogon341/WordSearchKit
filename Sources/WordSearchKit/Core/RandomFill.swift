@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RandomFill {
+internal struct RandomFill {
   
   static func fillEmptySpaces(in grid: inout Grid, uppercase: Bool) throws(WordSearchError) {
     
@@ -27,7 +27,7 @@ struct RandomFill {
     let upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     let lower = upper.lowercased()
     
-    if !uppercase {
+    if uppercase {
       return upper.randomElement()!
     } else {
       return lower.randomElement()!

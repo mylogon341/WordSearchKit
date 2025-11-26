@@ -5,7 +5,7 @@
 //  Created by luke on 23/11/2025.
 //
 
-struct Delta {
+internal struct Delta {
   let row: Int
   let column: Int
   
@@ -25,15 +25,15 @@ public enum Direction: CaseIterable {
   case diagDownLeft
   case diagDownRight
   
-  var delta: Delta {
+  internal var delta: Delta {
     switch self {
-    case .up:            .init( 0, -1)
-    case .down:          .init( 0,  1)
-    case .left:          .init(-1,  0)
-    case .right:         .init( 1,  0)
+    case .up:            .init(-1,  0)
+    case .down:          .init( 1,  0)
+    case .left:          .init( 0, -1)
+    case .right:         .init( 0,  1)
     case .diagUpLeft:    .init(-1, -1)
-    case .diagUpRight:   .init( 1, -1)
-    case .diagDownLeft:  .init(-1,  1)
+    case .diagUpRight:   .init(-1,  1)
+    case .diagDownLeft:  .init( 1, -1)
     case .diagDownRight: .init( 1,  1)
     }
   }
