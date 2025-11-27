@@ -1,4 +1,5 @@
-![Logo](./assets/logo-min.png)
+
+<img src="./assets/logo-min.png" width=200>
 
 # WordSearchKit
 
