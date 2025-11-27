@@ -12,7 +12,7 @@ public struct PlacedWord {
   public let start: GridPoint
   public let direction: Direction
   
-  var allPoints: [GridPoint] {
+  public var allPoints: [GridPoint] {
     var points: [GridPoint] = [start]
     
     for _ in 1..<word.count {

@@ -8,10 +8,10 @@
 import Foundation
 
 public struct Grid {
-  private(set) var rows: Int
-  private(set) var columns: Int
-  private(set) var placedWords: [PlacedWord] = []
-  private(set) var storage: [[Character]]
+  public private(set) var rows: Int
+  public private(set) var columns: Int
+  public private(set) var placedWords: [PlacedWord] = []
+  public private(set) var storage: [[Character]]
  
   internal init(rows: Int, columns: Int) {
     self.rows = rows

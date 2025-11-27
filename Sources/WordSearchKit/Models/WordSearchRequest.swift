@@ -11,4 +11,10 @@ public struct WordSearchRequest {
   let rows: Int
   let columns: Int
   let words: [String]
+  
+  public init(rows: Int, columns: Int, words: [String]) {
+    self.rows = rows
+    self.columns = columns
+    self.words = words
+  }
 }
